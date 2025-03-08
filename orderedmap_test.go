@@ -6,6 +6,17 @@ import (
 	"testing"
 )
 
+func TestLen(t *testing.T) {
+	m := NewOrderedMap[int, string]()
+	m.Put(1, "apple")
+	m.Put(2, "banana")
+	m.Put(3, "citrus")
+	m.Put(4, "dragonfruit")
+	if m.Len() != 4 {
+		t.Errorf("expected 4, got %d", m.Len())
+	}
+}
+
 func TestKeys(t *testing.T) {
 	m := NewOrderedMap[int, string]()
 	m.Put(1, "apple")
@@ -14,6 +25,17 @@ func TestKeys(t *testing.T) {
 	m.Put(4, "dragonfruit")
 	if !reflect.DeepEqual(m.Keys(), []int{1, 2, 3, 4}) {
 		t.Error(m.Keys())
+	}
+}
+
+func TestValues(t *testing.T) {
+	m := NewOrderedMap[int, string]()
+	m.Put(1, "apple")
+	m.Put(2, "banana")
+	m.Put(3, "citrus")
+	m.Put(4, "dragonfruit")
+	if !reflect.DeepEqual(m.Values(), []string{"apple", "banana", "citrus", "dragonfruit"}) {
+		t.Error(m.Values())
 	}
 }
 

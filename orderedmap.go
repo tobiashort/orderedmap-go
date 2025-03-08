@@ -22,10 +22,22 @@ func NewOrderedMap[K comparable, V any]() *OrderedMap[K, V] {
 	}
 }
 
+func (m *OrderedMap[K, V]) Len() int {
+	return len(m.keys)
+}
+
 func (m *OrderedMap[K, V]) Keys() []K {
-	clone := make([]K, len(m.keys))
+	clone := make([]K, m.Len())
 	copy(clone, m.keys)
 	return clone
+}
+
+func (m *OrderedMap[K, V]) Values() []V {
+	values := make([]V, m.Len())
+	for idx, key := range m.keys {
+		values[idx] = m.keyValues[key]
+	}
+	return values
 }
 
 func (m *OrderedMap[K, V]) Has(key K) bool {
@@ -179,7 +191,7 @@ func (m OrderedMap[K, V]) MarshalJSON() ([]byte, error) {
 		if err != nil {
 			return nil, err
 		}
-		if idx < len(m.keys)-1 {
+		if idx < m.Len()-1 {
 			builder.WriteString(",")
 		}
 	}
