@@ -1,0 +1,3 @@
+# github.com/tobiashort/utils-go v0.0.0-20250808210205-71502e800707
+## explicit; go 1.24.3
+github.com/tobiashort/utils-go/must
