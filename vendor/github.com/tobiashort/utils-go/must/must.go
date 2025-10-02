@@ -1,17 +1,17 @@
 package must
 
-func Must(err error) {
+func Do(err error) {
 	if err != nil {
 		panic(err)
 	}
 }
 
-func Must2[T any](val T, err error) T {
-	Must(err)
+func Do2[T any](val T, err error) T {
+	Do(err)
 	return val
 }
 
-func Must3[T1 any, T2 any](val1 T1, val2 T2, err error) (T1, T2) {
-	Must(err)
+func Do3[T1 any, T2 any](val1 T1, val2 T2, err error) (T1, T2) {
+	Do(err)
 	return val1, val2
 }
